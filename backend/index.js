@@ -71,7 +71,7 @@ app.use((error, req, res, next) => {
 
 const port = process.env.PORT || 3000;
 
-app.listen(3000, async () => {
+app.listen(port, async () => {
   await connectDB();
   console.log("Server is running!");
 });
