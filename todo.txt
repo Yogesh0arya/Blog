@@ -1,0 +1,16 @@
+React quill print on webpage with images
+
+delete image from image kit when
+    - Post upload failed
+    - Delete Post
+    - Delete User
+
+Get specific category post when clicked on category
+
+General Category and All posts in PostAction
+
+Edit the post
+
+Resize the image
+
+Image of user when does not have image
