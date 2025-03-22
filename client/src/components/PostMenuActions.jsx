@@ -10,6 +10,8 @@ export default function PostMenuActions({ post }) {
   const { user } = useUser();
   const navigate = useNavigate();
 
+  if (!user) return;
+
   // console.log(user);
 
   // role validation
