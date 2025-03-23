@@ -46,7 +46,7 @@ export const getPosts = async (req, res, next) => {
         case "trending":
           sortObj = { visitNumber: -1 };
           query.createdAt = {
-            $gte: new Date(new Date().getTime - 7 * 12 * 60 * 60 * 1000),
+            $gte: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
           };
           break;
         case "default":

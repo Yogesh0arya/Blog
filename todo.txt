@@ -14,3 +14,5 @@ Edit the post
 Resize the image
 
 Image of user when does not have image
+
+Search on shows titles, update it to get category, author
