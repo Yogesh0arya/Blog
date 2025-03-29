@@ -9,7 +9,13 @@ import cors from "cors";
 
 const app = express();
 
-app.use(cors(process.env.CLIENT_URL));
+// app.use(cors(process.env.CLIENT_URL));
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL, // Allow only your frontend origin
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  })
+);
 
 // body-parser not json
 // to prevent conflict with json and body-parser, moved webhook on top

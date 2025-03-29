@@ -78,10 +78,16 @@ function SideMenu() {
       <h1 className="mt-8 mb-4 text-sm font-medium">Category</h1>
       <div className="cursor-pointer flex flex-col gap-2 text-sm">
         <span
-          onClick={() => handleCategoryChange("general")}
+          onClick={() => handleCategoryChange("")}
           className="cursor-pointer underline"
         >
           All
+        </span>
+        <span
+          onClick={() => handleCategoryChange("general")}
+          className="cursor-pointer underline"
+        >
+          General
         </span>
         <span
           onClick={() => handleCategoryChange("web-design")}

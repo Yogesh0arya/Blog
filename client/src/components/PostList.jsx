@@ -43,7 +43,7 @@ function PostList() {
   // if (isFetching) return "Loading...";
   if (status === "pending") return "Loading...";
 
-  if (status === "error") return "Something went wrong";
+  if (status === "error") return "Something went wrong" + error;
   // console.log(data);
   return (
     <InfiniteScroll

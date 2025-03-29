@@ -18,12 +18,12 @@ const HomePage = () => {
       <div className="flex items-center justify-between">
         {/* titles */}
         <div>
-          <h1 className="text-gray-800 text-2xl md:text-5xl lg:text-6xl font-bold">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit..
+          <h1 className="text-blue-800 text-2xl md:text-5xl lg:text-6xl font-bold">
+            Inspire Millions of people
           </h1>
           <p className="mt-8 text-md md:text-lg">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id eius
-            necessitatibus.
+            Trusted by business builders worldwide, the Yo Blogs are your
+            number-one source for education and inspiration.
           </p>
         </div>
 

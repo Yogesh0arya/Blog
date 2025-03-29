@@ -82,11 +82,13 @@ function WritePage() {
     <div className="h-[calc(100vh-64px)] md:h-[calc(100vh-80px)] flex flex-col gap-6">
       <h1 className="text-xl font-medium">Create a New Post</h1>
       <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-6 mb-6">
-        <Upload type="image" setProgress={setProgress} setData={setCover}>
-          <p className="w-max px-4 py-2 shadow-md rounded-xl text-sm text-gray-500 bg-white">
-            Add a cover image
-          </p>
-        </Upload>
+        <div className="w-min">
+          <Upload type="image" setProgress={setProgress} setData={setCover}>
+            <p className="w-max px-4 py-2 shadow-md rounded-xl text-sm text-gray-500 bg-white">
+              Add a cover image
+            </p>
+          </Upload>
+        </div>
         <input
           name="title"
           type="text"

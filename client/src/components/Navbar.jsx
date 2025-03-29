@@ -5,6 +5,7 @@ import {
   SignedIn,
   SignedOut,
   SignInButton,
+  SignOutButton,
   useAuth,
   UserButton,
 } from "@clerk/clerk-react";
@@ -14,9 +15,9 @@ function Navbar() {
 
   const { getToken } = useAuth();
 
-  useEffect(() => {
-    getToken().then((token) => console.log(token));
-  }, []);
+  // useEffect(() => {
+  //   getToken().then((token) => console.log(token));
+  // }, []);
 
   return (
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
@@ -29,11 +30,11 @@ function Navbar() {
           height={32}
           className="bg-transparent"
         />
-        <span>BLOG</span>
+        <span>YO BLOG</span>
       </Link>
 
       {/* Mobile Menu */}
-      <div className="md:hidden">
+      <div className="md:hidden z-50">
         <button
           onClick={() => setOpen(!open)}
           className="cursor-pointer text-2xl"
@@ -46,21 +47,47 @@ function Navbar() {
             open ? "-right-0" : "-right-[100%]"
           }`}
         >
-          <Link to="/">Home</Link>
-          <Link to="/">Trending</Link>
-          <Link to="/">Most Popular</Link>
-          <Link to="/">About</Link>
-          <Link to="/">
-            <button>Login</button>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <Link to="/" onClick={() => setOpen(!open)}>
+            Home
           </Link>
+          <Link to="/write" onClick={() => setOpen(!open)}>
+            Write
+          </Link>
+          <Link onClick={() => setOpen(!open)} to="/posts?sort=trending">
+            Trending
+          </Link>
+          <Link onClick={() => setOpen(!open)} to="/posts?sort=popular">
+            Most Popular
+          </Link>
+          <Link onClick={() => setOpen(!open)} to="/">
+            About
+          </Link>
+          <SignedOut>
+            <Link to="/login">
+              <button
+                onClick={() => setOpen(!open)}
+                className="py-2 px-4 rounded-3xl bg-blue-800 text-white cursor-pointer"
+              >
+                Login 👋
+              </button>
+            </Link>
+          </SignedOut>
+          <SignedIn>
+            <SignOutButton className="flex cursor-pointer">
+              Logout
+            </SignOutButton>
+          </SignedIn>
         </div>
       </div>
 
       {/* Desktop Menu */}
       <div className="hidden md:flex items-center gap-8 xl:gap-12 font-medium">
         <Link to="/">Home</Link>
-        <Link to="/">Trending</Link>
-        <Link to="/">Most Popular</Link>
+        <Link to="/posts?sort=trending">Trending</Link>
+        <Link to="/posts?sort=popular">Most Popular</Link>
         <Link to="/">About</Link>
         <SignedOut>
           <Link to="/login">
