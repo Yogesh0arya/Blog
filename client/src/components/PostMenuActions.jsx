@@ -10,7 +10,8 @@ export default function PostMenuActions({ post }) {
   const { user } = useUser();
   const navigate = useNavigate();
 
-  if (!user) return;
+  // throwing error
+  // if (!user) return;
 
   // console.log(user);
 
@@ -61,13 +62,6 @@ export default function PostMenuActions({ post }) {
     },
   });
 
-  const handleSave = () => {
-    if (!user) {
-      return navigate("/login");
-    }
-    saveMutation.mutate();
-  };
-
   // delete post
   const deletMutation = useMutation({
     mutationFn: async () => {
@@ -86,10 +80,6 @@ export default function PostMenuActions({ post }) {
       toast.error(error.response.data);
     },
   });
-
-  const handledelete = () => {
-    deletMutation.mutate();
-  };
 
   // Feature post by admin
   const featureMutation = useMutation({
@@ -112,6 +102,17 @@ export default function PostMenuActions({ post }) {
       toast.error(error.response.data);
     },
   });
+
+  const handleSave = () => {
+    if (!user) {
+      return navigate("/login");
+    }
+    saveMutation.mutate();
+  };
+
+  const handledelete = () => {
+    deletMutation.mutate();
+  };
 
   const handleFeature = () => {
     featureMutation.mutate();
