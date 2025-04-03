@@ -59,7 +59,7 @@ function SinglePostPage() {
       </div>
 
       {/* content */}
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col md:flex-row md:justify-between gap-8">
         {/* text */}
         <div className="lg:text-lg flex flex-col text-justify ">
           {Parser(data.content)}
@@ -99,19 +99,19 @@ function SinglePostPage() {
           <PostMenuActions post={data} />
           <h1 className="mt-8 mb-4 text-sm font-medium">Categories</h1>
           <div className="flex flex-col gap-2 text-sm">
-            <Link to="/" className="underline">
+            <Link to="/posts" className="underline">
               All
             </Link>
-            <Link to="/" className="underline">
+            <Link to="/posts?cat=web-design" className="underline">
               Web Design
             </Link>
-            <Link to="/" className="underline">
+            <Link to="/posts?cat=development" className="underline">
               Development
             </Link>
-            <Link to="/" className="underline">
+            <Link to="/posts?cat=drawing" className="underline">
               Drawing
             </Link>
-            <Link to="/" className="underline">
+            <Link to="/posts?cat=animation" className="underline">
               Animation
             </Link>
           </div>
