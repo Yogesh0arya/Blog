@@ -72,6 +72,7 @@ export const getPosts = async (req, res, next) => {
 
     res.status(200).json({ posts, hasMore });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };

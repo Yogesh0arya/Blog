@@ -6,7 +6,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useSearchParams } from "react-router";
 
 const fetchPosts = async (pageParam, searchParams) => {
-  const searchParamsObj = Object.fromEntries([...searchParams]);
+  const searchParamsObj = Object.fromEntries(
+    [...searchParams].filter(([key]) => !key.startsWith("__clerk_handshake"))
+  );
 
   // console.log(searchParamsObj);
 
@@ -14,13 +16,11 @@ const fetchPosts = async (pageParam, searchParams) => {
     params: { page: pageParam, limit: 10, ...searchParamsObj },
   });
 
-  // console.log(res.data);
   return res.data;
 };
 
 function PostList() {
   const [searchParams, setSearchParams] = useSearchParams();
-  // console.log(searchParams);
 
   const {
     data,
@@ -43,8 +43,7 @@ function PostList() {
   // if (isFetching) return "Loading...";
   if (status === "pending") return "Loading...";
 
-  if (status === "error") return "Something went wrong" + error;
-  // console.log(data);
+  if (status === "error") return "Something went wrong " + error;
   return (
     <InfiniteScroll
       className="flex flex-col gap-12 mb-8"

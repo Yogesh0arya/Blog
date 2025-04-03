@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router";
 import MainCategories from "../components/MainCategories";
 import FeaturedPosts from "../components/FeaturedPosts";
 import PostList from "../components/PostList";
+import { useUser } from "@clerk/clerk-react";
 
 const HomePage = () => {
+  // const { isSignedIn, user, isLoaded } = useUser();
+  // console.log(user);
+  // useEffect(() => {
+  //   setT
+  // }, [user]);
+  // if (!isLoaded) {
+  //   return <div>Loading...</div>;
+  // }
+
   return (
     <div className="mt-4 flex flex-col gap-4 ">
       {/* BreadCrumb */}

@@ -48,10 +48,15 @@ function Navbar() {
           }`}
         >
           <SignedIn>
-            <UserButton />
+            <div className="flex gap-2">
+              <UserButton /> <p>Profile</p>
+            </div>
           </SignedIn>
           <Link to="/" onClick={() => setOpen(!open)}>
             Home
+          </Link>
+          <Link to="/posts" onClick={() => setOpen(!open)}>
+            All Posts
           </Link>
           <Link to="/write" onClick={() => setOpen(!open)}>
             Write

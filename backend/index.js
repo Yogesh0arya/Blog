@@ -14,6 +14,7 @@ app.use(
   cors({
     origin: process.env.CLIENT_URL, // Allow only your frontend origin
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 
