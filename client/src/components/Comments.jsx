@@ -65,19 +65,21 @@ function Comments({ postId }) {
   return (
     <div className="my-8 flex flex-col gap-8 lg:w-3/5">
       <h1 className="text-xl text-gray-500 underline">Comments</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="flex items-center justify-between gap-8 w-full"
-      >
-        <textarea
-          name="desc"
-          placeholder="Write a comment..."
-          className="bg-white w-full p-4 outline-none rounded-2xl"
-        />
-        <button className="bg-blue-800 px-4 py-2 rounded-xl text-white font-medium">
-          Send
-        </button>
-      </form>
+      {user && (
+        <form
+          onSubmit={handleSubmit}
+          className="flex items-center justify-between gap-8 w-full"
+        >
+          <textarea
+            name="desc"
+            placeholder="Write a comment..."
+            className="bg-white w-full p-4 outline-none rounded-2xl"
+          />
+          <button className="bg-blue-800 px-4 py-2 rounded-xl text-white font-medium">
+            Send
+          </button>
+        </form>
+      )}
       {/* {console.log(data)} */}
       {isPending ? (
         "Loading..."

@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function PostMenuActions({ post }) {
   const { getToken } = useAuth();
@@ -27,6 +27,7 @@ export default function PostMenuActions({ post }) {
     queryKey: ["savedPosts"],
     queryFn: async () => {
       const token = await getToken();
+      if (!user) return [];
       return axios.get(`${import.meta.env.VITE_API_URL}/users/saved`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -121,13 +122,10 @@ export default function PostMenuActions({ post }) {
   return (
     <div className="mt-8 mb-4 text-sm font-medium">
       <h1>Actions</h1>
-      {isPending ? (
-        "Loading..."
-      ) : error ? (
-        "Saved post fetching failed "
-      ) : (
-        <div
-          onClick={handleSave}
+      {/* Login to save post */}
+      {!user && (
+        <Link
+          to="/login"
           className="flex items-center gap-2 py-2 text-sm cursor-pointer"
         >
           <svg
@@ -135,28 +133,55 @@ export default function PostMenuActions({ post }) {
             viewBox="0 0 48 48"
             width="20px"
             height="20px"
+            fill="none"
           >
             <path
               d="M12 4C10.3 4 9 5.3 9 7v34l15-9 15 9V7c0-1.7-1.3-3-3-3H12z"
               stroke="black"
               strokeWidth="2"
-              fill={
-                saveMutation.isPending
-                  ? isSaved
-                    ? "none"
-                    : "black"
-                  : isSaved
-                  ? "black"
-                  : "none"
-              }
             />
           </svg>
           <span>Save this Post</span>
-          {saveMutation.isPending && (
-            <span className="text-xs">(in progress...)</span>
-          )}
-        </div>
+        </Link>
       )}
+
+      {user &&
+        (isPending ? (
+          "Loading..."
+        ) : error ? (
+          "Saved post fetching failed "
+        ) : (
+          <div
+            onClick={handleSave}
+            className="flex items-center gap-2 py-2 text-sm cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 48 48"
+              width="20px"
+              height="20px"
+            >
+              <path
+                d="M12 4C10.3 4 9 5.3 9 7v34l15-9 15 9V7c0-1.7-1.3-3-3-3H12z"
+                stroke="black"
+                strokeWidth="2"
+                fill={
+                  saveMutation.isPending
+                    ? isSaved
+                      ? "none"
+                      : "black"
+                    : isSaved
+                    ? "black"
+                    : "none"
+                }
+              />
+            </svg>
+            <span>Save this Post</span>
+            {saveMutation.isPending && (
+              <span className="text-xs">(in progress...)</span>
+            )}
+          </div>
+        ))}
       {isAdmin && (
         <div
           className="flex items-center gap-2 py-2 text-sm cursor-pointer"
