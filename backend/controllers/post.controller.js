@@ -21,7 +21,21 @@ export const getPosts = async (req, res, next) => {
       query.category = cat;
     }
     if (searchQuery) {
-      query.title = { $regex: searchQuery, $options: "i" };
+      query.$or = [
+        { title: { $regex: searchQuery, $options: "i" } },
+        { category: { $regex: searchQuery, $options: "i" } },
+        // Add other fields you want to search in
+      ];
+
+      const matchingUsers = await User.find({
+        username: { $regex: searchQuery, $options: "i" },
+      }).select("_id");
+
+      if (matchingUsers.length > 0) {
+        query.$or.push({
+          user: { $in: matchingUsers.map((u) => u._id) },
+        });
+      }
     }
     if (author) {
       const user = await User.findOne({ username: author }).select("_id");
